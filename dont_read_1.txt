@@ -1,0 +1,10 @@
+to create controller rout and page:
+rails g controller <controllername> <methodname>
+
+--- devise confirmable ----
+uncomment everything in confirmable section of migration file
+at :confirmable to model
+
+when using action_before ... you can do 
+skip_before_action :authenticate_user!
+in a controller to make it possible to view without autentication
