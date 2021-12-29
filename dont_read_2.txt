@@ -1,0 +1,58 @@
+---- mails ----
+using gmail SMPT instead of mail service of heroku
+
+#add to config/environments/production.rb for production, /development for development
+
+config.action_mailer.delivery_method = :smtp
+host = 'example.com' #replace with your own url
+config.action_mailer.default_url_options = { host: host }
+
+# SMTP settings for gmail
+config.action_mailer.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :user_name            => <gmail_username>,
+  :password             => <gmail_password>,
+  :authentication       => "plain",
+  :enable_starttls_auto => true
+}
+
+optional:
+ActionMailer::Base.default_content_type = "text/html"
+
+!! dont forget to use credentials file for the password
+
+
+also look https://kinsta.com/nl/blog/gmail-smtp-server/
+for development use 
+host = 'localhost:3000' #replace with your own url
+config.action_mailer.default_url_options = { :host => 'localhost:3000', protocol: 'http' }
+
+
+generate mailer:
+rails generate mailer ""name""
+
+-> creates a controller under mailers
+
+add method to mailer controller
+with
+params[:paramname]
+to get parameters from other methods and
+mail(to: <ADMIN_EMAIL>, subject: "You got a new order!")
+to sent the actual mail
+
+create the views like you would do with pages
+best practice: create bothe a .html.erb and a .text.erb version
+
+Where you want to sent the mail add:
+"mailercontollername".with(""paramname"": @value).""method name"".deliver_later
+
+
+when using gmail set the account settings (account not mail) in security for "less secure app acces" to on
+
+
+credentials on production:
+register master key:
+in config/environments/production.rb uncomment
+config.require_master_key = true
+in Heroku app settings, register a key called RAILS_MASTER_KEY. Enter the value found inside the config/master.key file. This allows Heroku to access secret keys registered inside the credentials.yml.enc file.
