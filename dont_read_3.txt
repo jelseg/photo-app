@@ -1,0 +1,37 @@
+colapsable sidebar:
+
+place sidebar, and buttons with specified on click javascript functions
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+<div id="main">
+  <button class="openbtn" onclick="openNav()">&#9776; Open Sidebar</button>
+  --- content ----
+</div>
+
+
+in scss make default width of the sidebar = 0 -> not shown
+
+for js function: let them change the with of the sidebar and change the ofset of the main content
+
+window.openNav = function() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+
+/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+window.closeNav = function() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft = "0";
+}
+
+
+use window.name = function() instead of function name() 
+(don't know why but it works: but should read https://github.com/rails/webpacker/issues/1624)
