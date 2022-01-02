@@ -1,9 +1,15 @@
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
+  <li> <%= link_to('HOME',root_path) %> </li>
+
+  <% if current_user %>
+    <li> <i> <%= link_to(truncate(current_user.email,length: 10),edit_user_registration_path, title: 'edit profile') %> </i> </li>
+    <li> <%= link_to('LOG OUT', destroy_user_session_path, class: 'btn btn-xs btn-danger text-left', title: 'logout', :method => :delete) %> </li>
+  <% else %>
+  <li class='text-left'> <%= link_to('Sign IN', new_user_session_path, class: 'btn btn-primary m-2', title: 'sign in') %> </li>
+  <li> <%= link_to('SIGN UP', new_user_registration_path, title: 'sign up') %> </li>
+  <% end %>
+  
 </div>
 
 <div id="main">

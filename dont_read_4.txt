@@ -1,0 +1,37 @@
+ ------ adding payment trough stripe ------
+
+ use external service -> dont have to manage payment credentials yourself (here using stripe.com)
+
+ difficulties: payment at signup -> will need to add js to signup form
+ and needs to make own version of the registration controller provided by devise
+
+
+ in gemfile:
+ gem 'stripe'
+
+ in config/initialisers add stripe.rb
+ add keys like in this project
+add keys the credentials file
+
+
+create a payment model
+rails g model Payment email:string token:string user_id:integer
+
+in user model:
+has_one :payment
+accepts_nested_attributes_for :payment
+-> when creating a user it will also accept attributes for payment -> can be created together
+
+in payment model:
+attr_accessor :card_number, :card_cvv, :card_expires_month, :card_expires_year
+belongs_to :user
+-> will be able to use these atributes at creation but will never store them
+
+also add some methods: (see payment model) to display selections
+and for processing the payment
+
+
+change view/devise/registration/new to include payment details
+befor the button add <%= fields_for(:payment) do |p| %> ... <% end %>  with  the fields for the payment
+
+

@@ -1,1 +1,60 @@
-<h1>Welcome to PhotoApp</h1>
+
+<% if current_user %>
+
+<div class="p-5 my-5 rounded-3 col-sm-10 mx-auto text-center" id="frontpage_jumbotron">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Welcome <%= current_user.email %> to our Photo App</h1>
+        <p class="col-md-8 fs-4 mx-auto">This website is part of a tutorial from udemy and should teach me ruby on rails. Look around and see what it can('t) do </p>
+    </div>
+</div>
+
+<% else %>
+
+<div class="p-5 my-5 rounded-3 col-sm-10 mx-auto text-center" id="frontpage_jumbotron">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Welcome to our Photo App</h1>
+        <p class="col-md-8 fs-4 mx-auto">This website is part of a tutorial from udemy and should teach me ruby on rails. Sign up, give me money and see what it can('t) do </p>
+    </div>
+</div>
+
+<div class="col-5 mx-auto" >
+<div class="row" >
+    <div class="col-6 mx-auto">
+        <h3> Premium Plan </h3>
+        <div class='row'>
+        <div class='col-8'>
+            <ul>
+                <li> Unlimited image upload </li>
+                <li> make Jelle happy </li>
+                <li> access when site is online </li>
+            </ul>
+            <%= link_to('SIGN UP', new_user_registration_path, class: 'btn btn-primary') %>
+        </div>
+        <div class="col-4 text-right">
+          Price: $10
+        </div>
+        </div>
+    </diV>
+    <div class="col-6 mx-auto">
+        <h3> Amaze Plan </h3>
+        <div class='row'>
+        <div class = "col-8">
+            <ul>
+                <li> Unlimited image upload </li>
+                <li> make Jelle super happy </li>
+                <li> access when site is online </li>
+                <li> multiple projects </li>
+            </ul>
+            <%= link_to('SIGN UP', new_user_registration_path, class: 'btn btn-primary') %>
+        </div>
+        <div class="col-4 text-right">
+          Price: $100
+        </div>
+        </div>
+
+    </diV>
+
+</div>
+</div>
+
+<% end %>

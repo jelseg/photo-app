@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+ :root {
+    --color-darkbgrey:rgba(26, 35, 44, 0.842);
+    --color-lightbgrey:rgb(134, 165, 196);
+    --color-lightgrey:rgb(170, 175, 190);
+    --color-deepblue: rgb(30, 110, 190);
+}
